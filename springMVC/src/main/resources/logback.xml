@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration>
+
+<configuration debug="false">
+
+
+    <conversionRule conversionWord="short" converterClass="com.csii.pe.common.logging.ShortLoggerConverter" />
+
+    <conversionRule conversionWord="count" converterClass="com.csii.pe.common.logging.CountingConverter" />
+
+    <appender name="CONSOLE"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                [%d{yy-MM-dd HH:mm:ss.SSS}] [%thread] [%X{transName}] [%-5level] %logger{0} %m%n
+            </Pattern>
+        </layout>
+    </appender>
+
+    <appender name="FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Encoding>UTF-8</Encoding>
+        <File>
+            /home/spring/springMVC/log/springMVC.%d{yyyy-MM-dd}.log.zip
+        </File>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                [%d{yy-MM-dd HH:mm:ss.SSS}] [%thread] [%X{transName}] [%-5level] %logger{0}  %m%n
+            </Pattern>
+        </layout>
+    </appender>
+
+
+
+    <logger name="org.apache.commons.httpclient.util" additivity="false">
+        <level value="WARN" />
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <logger name="org.springframework" additivity="false">
+        <level value="info" />
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <logger name="java.sql" additivity="false">
+        <level value="debug" />
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </logger>
+
+
+    <logger name="com" additivity="false">
+        <level value="info" />
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <logger name="com.omar.redis" additivity="false">
+        <level value="debug" />
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <root>
+        <level value="debug" />
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </root>
+
+</configuration>

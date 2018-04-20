@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<setting name="cacheEnabled" value="true" />
+		<!-- 打印sql日志 -->
+		<setting name="logImpl" value="STDOUT_LOGGING" />
+	</settings>
+
+	<!-- 配置全限定类名的别名，用于简化配置 -->
+	<typeAliases>
+		<typeAlias alias="HashMap" type="java.util.HashMap"/>
+		<typeAlias alias="User" type="com.omar.spring.model.User"></typeAlias>
+	</typeAliases>
+	<!-- 配置sql映射文件 -->
+<!--	<mappers>
+		<mapper resource="classpath:com/omar/spring/mapping/user.xml"/>
+	</mappers>-->
+</configuration>
