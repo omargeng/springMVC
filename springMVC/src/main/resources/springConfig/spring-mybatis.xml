@@ -10,7 +10,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
           p:dataSource-ref="dataSource"
           p:configLocation="classpath:/myBatisConfig.xml"
-          p:mapperLocations="classpath:mapping/user.xml">
+          p:mapperLocations="classpath:mapping/*.xml">
     </bean>
 
     <!-- 配置mybatis转换器 ,转换映射接口-->
