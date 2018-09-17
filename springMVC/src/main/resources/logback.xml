@@ -17,7 +17,7 @@
         </layout>
     </appender>
 
-    <appender name="FILE"
+  <!--  <appender name="FILE"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <Encoding>UTF-8</Encoding>
         <File>
@@ -28,6 +28,31 @@
                 [%d{yy-MM-dd HH:mm:ss.SSS}] [%thread] [%X{transName}] [%-5level] %logger{0}  %m%n
             </Pattern>
         </layout>
+    </appender>-->
+
+
+    <appender name="FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+
+        <!-- 测试部署时使用如下配置 -->
+        <!-- 可让每天产生一个日志文件，最多 30 个，更早的删除 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/home/spring/springMVC/log/springMVC.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+
+        <!--
+             RollingFileAppender 一般情况下需要配置两个参数：
+             RollingPolicy，负责滚动。TriggeringPolicy，决定是否以及何时进行滚动
+             TimeBasedRollingPolicy比较特殊，它同时继承了RollingPolicy和TriggerPolicy。
+
+        -->
+        <encoder>
+            <pattern>[%d{yy-MM-dd HH:mm:ss.SSS}] [%thread] [%X{transName}] [%-5level] %logger{0}  %m%n</pattern>
+        </encoder>
     </appender>
 
 
