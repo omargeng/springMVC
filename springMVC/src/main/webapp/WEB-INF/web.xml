@@ -98,7 +98,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>spring</servlet-name>
-        <url-pattern>*.do</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <!-- druid session监控，web监控-->

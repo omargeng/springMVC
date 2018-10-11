@@ -63,11 +63,11 @@
         <appender-ref ref="FILE" />
     </logger>
 
-    <logger name="org.springframework" additivity="false">
+<!--    <logger name="org.springframework" additivity="false">
         <level value="info" />
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="FILE" />
-    </logger>
+    </logger>-->
 
     <logger name="java.sql" additivity="false">
         <level value="debug" />
@@ -75,12 +75,12 @@
         <appender-ref ref="FILE" />
     </logger>
 
-
+<!--
     <logger name="com" additivity="false">
         <level value="info" />
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="FILE" />
-    </logger>
+    </logger>-->
 
     <logger name="com.omar.redis" additivity="false">
         <level value="debug" />

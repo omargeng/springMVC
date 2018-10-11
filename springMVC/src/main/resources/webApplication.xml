@@ -14,7 +14,7 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
-    <context:component-scan base-package="com.omar.web"></context:component-scan>
+    <context:component-scan base-package="com.omar.web" ></context:component-scan>
 
     <!--国际化资源  -->
     <bean id="messageSource"
@@ -27,7 +27,7 @@
     </bean>
 
 
-    <mvc:annotation-driven>
+    <mvc:annotation-driven enable-matrix-variables="true">
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
             <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
@@ -36,6 +36,7 @@
             <bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter"
                   p:marshaller-ref="xmlMarshaller" p:unmarshaller-ref="xmlMarshaller"/>
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+            <bean class="com.omar.spring.http.converter.MapHttpMessageConverter"/>
         </mvc:message-converters>
     </mvc:annotation-driven>
 
@@ -51,7 +52,7 @@
     </bean>
 
     <bean class="com.omar.xstream.util.XStreamAnnotedClassPostProcessor"
-          p:basePackage="com.omar.model"
+          p:basePackage="com.omar.spring.model"
           p:annotationName="com.omar.xstream.util.XStreamAnnoted" p:exclude-ref="excludeMap"></bean>
     <util:map id="excludeMap">
         <entry key="annotation" value="com.omar.xstream.util.ExcludeXStreamAnnoted"></entry>
