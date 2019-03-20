@@ -12,6 +12,7 @@ import org.springframework.web.context.support.ServletContextResource;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -44,17 +45,20 @@ public class TestController extends AbstractController {
         return "/test/success";
     }
 
-    // GET /testMatrix/42;q=11;r=12/pets/21;q=22;s=23
+    // GET /testMatrix/42;q=11;q=33;r=12/pets/21;q=22;s=23
 
     @RequestMapping(value = "/testMatrix3/{userId}/pets/{petId}", method = RequestMethod.GET)
     public String findPet(
             @MatrixVariable Map<Object, Object> matrixVars,
-            @MatrixVariable(pathVar = "petId") Map<String, String> petMatrixVars) {
+            @MatrixVariable(pathVar = "petId") Map<String, String> petMatrixVars,
+            @MatrixVariable(pathVar = "userId",value = "q") List q) {
 
-        // matrixVars: ["q" : [11,22], "r" : 12, "s" : 23]
+        // matrixVars: ["q" : 11, "r" : 12, "s" : 23]
         // petMatrixVars: ["q" : 11, "s" : 23]
+        //q [11, 33]
         log.info("a======> " + matrixVars);
         log.info("a======> " + petMatrixVars);
+        log.info("q=========>"+q);
         return "/test/success";
     }
 
@@ -109,6 +113,7 @@ public class TestController extends AbstractController {
         return "test/success";
     }
 
+    //springMVC在处理请求方法前会先调用对于标注了ModelAttribute的方法，并将方法返回值添加到模型中
     @ModelAttribute("user")
     public User getUser(){
         User user=new User();

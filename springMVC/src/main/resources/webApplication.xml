@@ -27,7 +27,7 @@
     </bean>
 
 
-    <mvc:annotation-driven enable-matrix-variables="true">
+    <mvc:annotation-driven enable-matrix-variables="true" conversion-service="conversionService">
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
             <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
@@ -57,4 +57,13 @@
     <util:map id="excludeMap">
         <entry key="annotation" value="com.omar.xstream.util.ExcludeXStreamAnnoted"></entry>
     </util:map>
+
+    <!-- 配置conversionService -->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <ref bean="stringToUserConverter"></ref>
+            </list>
+        </property>
+    </bean>
 </beans>

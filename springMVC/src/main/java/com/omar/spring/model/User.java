@@ -3,8 +3,12 @@ package com.omar.spring.model;
 import com.omar.xstream.util.XStreamAnnoted;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @Author omar
@@ -20,10 +24,15 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = -2853945357578768872L;
     private String userName;
+    @Pattern(regexp = "w{4,30}") //匹配4到30个数字字母以及下划线的字符
     @XStreamAsAttribute
     private String userId;
     private String password;
+    @Pattern(regexp = "^1([38]\\d|5[0-35-9]|7[3678])\\d{8}$") //通过正则表达式校验
     private String phoneNo;
+    @Past //对属性进行校验，时间必须是一个过去的时间
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE) //时间字符串的格式化
+    private Date birthDay;
 
     public String getUserName() {
         return userName;
@@ -57,6 +66,15 @@ public class User implements Serializable {
         this.phoneNo = phoneNo;
     }
 
+
+    public Date getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -64,6 +82,7 @@ public class User implements Serializable {
                 ", userId='" + userId + '\'' +
                 ", password='" + password + '\'' +
                 ", phoneNo='" + phoneNo + '\'' +
+                ", birthDay=" + birthDay +
                 '}';
     }
 }

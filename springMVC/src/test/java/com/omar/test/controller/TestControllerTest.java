@@ -110,4 +110,8 @@ public class TestControllerTest {
 //        Assert.assertNotNull(responseUser);
 //        Assert.assertEquals("5454545",responseUser.getUserId());
     }
+
+    public void testTypeResole(){
+
+    }
 }
