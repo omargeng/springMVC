@@ -78,7 +78,7 @@ public class TestControllerTest {
         httpheaders.setAccept(Collections.singletonList(MediaType.APPLICATION_XML));
 
         HttpEntity<User> requestEntity=new HttpEntity<User>(user,httpheaders);
-        ResponseEntity<String> responseEntity=restTemplate.exchange("http://127.0.0.1:8082/springMVC/test/test6.do", HttpMethod.POST,requestEntity,String.class);
+        ResponseEntity<String> responseEntity=restTemplate.exchange("http://localhost:8080/springMVC/viewTest/testxml", HttpMethod.POST,requestEntity,String.class);
 
         System.out.println(responseEntity.getHeaders());
         System.out.println(responseEntity.getBody());
@@ -102,7 +102,7 @@ public class TestControllerTest {
         httpheaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON_UTF8));
 
         HttpEntity<User> requestEntity=new HttpEntity<User>(user,httpheaders);
-        ResponseEntity<String> responseEntity=restTemplate.exchange("http://127.0.0.1:8082/springMVC/test/test6.do", HttpMethod.POST,requestEntity,String.class);
+        ResponseEntity<String> responseEntity=restTemplate.exchange("http://localhost:8080/springMVC/viewTest/testxml", HttpMethod.POST,requestEntity,String.class);
 
         System.out.println(responseEntity.getHeaders());
         System.out.println(responseEntity.getBody());

@@ -4,6 +4,7 @@ import com.omar.spring.model.User;
 import com.omar.spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends AbstractController{
 
     @Autowired
     private UserService userService;
@@ -45,6 +46,12 @@ public class UserController {
     public ModelAndView userQuery(String userId){
         User user=userService.queryUserById(userId);
         return new ModelAndView("/user/queryResult","user",user);
+    }
+
+    @RequestMapping("/{userId}")
+    public String queryUserById(@PathVariable("userId") String userId){
+        log.info("userid======>"+userId);
+        return "/test/success";
     }
 
     public UserService getUserService() {
