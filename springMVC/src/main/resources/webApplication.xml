@@ -133,7 +133,8 @@
     </bean>
 
     <websocket:handlers>
-        <websocket:mapping path="/term" handler=""/>
+        <websocket:mapping path="/term" handler="sshShellHandler"/>
     </websocket:handlers>
 
+    <mvc:resources mapping="/js/**" location="/WEB-INF/js/"></mvc:resources>
 </beans>

@@ -30,8 +30,8 @@ public class SshShellHandler extends AbstractWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
          jsch = new JSch();
-        Session sshSession = jsch.getSession("vafs", "10.225.1.90", 22);
-        sshSession.setPassword("vafs");
+        Session sshSession = jsch.getSession("omar", "47.94.132.210", 22);
+        sshSession.setPassword("omar123");
         sshSession.setConfig("StrictHostKeyChecking", "no");
         sshSession.setTimeout(60000);
         sshSession.connect();
@@ -39,7 +39,7 @@ public class SshShellHandler extends AbstractWebSocketHandler {
         ((ChannelShell) channel).setPtyType("xterm");
         InputStream outFromChannel = channel.getInputStream();
         OutputStream inputToChannel = channel.getOutputStream();
-        PrintStream commander = new PrintStream(inputToChannel, true);
+        commander = new PrintStream(inputToChannel, true);
         Runnable run = new SecureShellTask(outFromChannel,session);
         Thread thread = new Thread(run);
         thread.start();
@@ -49,7 +49,8 @@ public class SshShellHandler extends AbstractWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        commander.println(new String(message.asBytes()));
+//        commander.println(new String(message.asBytes()));
+        commander.write(message.asBytes());
         commander.flush();
     }
 

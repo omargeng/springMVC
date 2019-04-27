@@ -95,6 +95,11 @@ public class ViewTestController extends AbstractController {
         return user;
     }
 
+    @RequestMapping("/termview")
+    public String gettrem(){
+        return "term";
+    }
+
     public void addUser(ModelMap modelMap){
         List<User> userList = new ArrayList<>();
         userList.add(creatUser("张三", "1584589876"));

@@ -8,9 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Title11111</title>
+    <script src="<%= request.getContextPath() %>/js/jquery-3.3.1.js"></script>
     <script src="<%= request.getContextPath() %>/js/jquery-ui.js"></script>
-    <script src="<%= request.getContextPath() %>/js/tty/term.js"></script>
+    <script src="<%= request.getContextPath() %>/js/term.js"></script>
 
     <script>
         $(function(){
@@ -78,7 +79,7 @@
     </script>
 </head>
 <body>
-<input type="hidden" id="wsHost" value="<%=request.getLocalAddr()+":"+request.getServerPort()+"/"+request.getContextPath() %>/term"/>
+<input type="hidden" id="wsHost" value="localhost:8080/springMVC/term"/>
     <div id="content_term"></div>
 </body>
 </html>
